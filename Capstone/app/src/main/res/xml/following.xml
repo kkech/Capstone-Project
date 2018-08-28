@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreferenceCompat
+        android:defaultValue="@bool/default_boolean_subscription"
+        android:key="@string/follow_key_channel1_switch"
+        android:title="@string/follow_title_channel1_switch"
+        android:summaryOff="@string/not_following_text"
+        android:summaryOn="@string/following_text"/>
+
+    <SwitchPreferenceCompat
+        android:defaultValue="@bool/default_boolean_subscription"
+        android:key="@string/follow_key_channel2_switch"
+        android:title="@string/follow_title_channel2_switch"
+        android:summaryOff="@string/not_following_text"
+        android:summaryOn="@string/following_text"/>
+
+    <SwitchPreferenceCompat
+        android:defaultValue="@bool/default_boolean_subscription"
+        android:key="@string/follow_key_channel3_switch"
+        android:title="@string/follow_title_channel3_switch"
+        android:summaryOff="@string/not_following_text"
+        android:summaryOn="@string/following_text" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="@bool/default_boolean_subscription"
+        android:key="@string/follow_key_channel4_switch"
+        android:title="@string/follow_title_channel4_switch"
+        android:summaryOff="@string/not_following_text"
+        android:summaryOn="@string/following_text"/>
+
+    <SwitchPreferenceCompat
+        android:defaultValue="@bool/default_boolean_subscription"
+        android:key="@string/follow_key_channel5_switch"
+        android:title="@string/follow_title_channel5_switch"
+        android:summaryOff="@string/not_following_text"
+        android:summaryOn="@string/following_text"/>
+</PreferenceScreen>

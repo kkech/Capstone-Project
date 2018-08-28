@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "f826667d-686a-410c-b9a4-fefd63986750",
+		"name": "Capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "sendToTopic",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "key=<YOUR KEY>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"to\":\"/topics/key_channel3\",\n\"data\":{\"channel\":\"Channel3 Original\",\"article\":\"Mitsubishi Magna for Sale\",\"date\":1535450057545,\"channelKey\":\"key_channel3\"}\n}"
+				},
+				"url": {
+					"raw": "https://fcm.googleapis.com/fcm/send",
+					"protocol": "https",
+					"host": [
+						"fcm",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"fcm",
+						"send"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

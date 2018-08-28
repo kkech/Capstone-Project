@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">News App</string>
+
+    <string name="settings_following_title">Following</string>
+
+    <string name="not_following_text">Not Following</string>
+    <string name="following_text">Following</string>
+
+    <string name="follow_key_channel1_switch">key_channel1</string>
+    <string name="follow_key_channel2_switch">key_channel2</string>
+    <string name="follow_key_channel3_switch">key_channel3</string>
+    <string name="follow_key_channel4_switch">key_channel4</string>
+    <string name="follow_key_channel5_switch">key_channel5</string>
+
+    <string name="follow_title_channel1_switch">Channel1</string>
+    <string name="follow_title_channel2_switch">Channel2</string>
+    <string name="follow_title_channel3_switch">Channel3</string>
+    <string name="follow_title_channel4_switch">Channel4</string>
+    <string name="follow_title_channel5_switch">Channel5</string>
+
+
+    <string name="appwidget_text">new articles</string>
+    <string name="add_widget">Add widget</string>
+</resources>
