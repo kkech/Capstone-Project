@@ -40,21 +40,15 @@ import java.util.Map;
 
 public class FirebaseMessageService extends FirebaseMessagingService {
 
-    private static String LOG = FirebaseMessageService.class.getSimpleName();
-
-    private static final String JSON_AUTHOR_KEY = Contract.COLUMN_CHANNEL;
-    private static final String JSON_KEY_AUTHOR_KEY = Contract.COLUMN_CHANNEL_KEY;
-    private static final String JSON_MESSAGE_KEY = Contract.COLUMN_ARTICLE;
-    private static final String JSON_DATE_KEY = Contract.COLUMN_DATE;
+    private static final String JSON_AUTHOR_KEY = Contract.Entry.COLUMN_CHANNEL;
+    private static final String JSON_KEY_AUTHOR_KEY = Contract.Entry.COLUMN_CHANNEL_KEY;
+    private static final String JSON_MESSAGE_KEY = Contract.Entry.COLUMN_ARTICLE;
+    private static final String JSON_DATE_KEY = Contract.Entry.COLUMN_DATE;
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        Log.d(LOG, "Message from: " + remoteMessage.getFrom());
-
         Map<String, String> data = remoteMessage.getData();
-
         if (data.size() > 0) {
-            Log.d(LOG, "Message data : " + data);
             sendNotification(data);
             insertNews(data);
             if(MainActivity.hasSeenNews.equals(false))
@@ -62,46 +56,41 @@ public class FirebaseMessageService extends FirebaseMessagingService {
         }
     }
 
-    private void insertNews(final Map<String, String> data) {
-        AsyncTask<Void, Void, Void> insertNewsTask = new AsyncTask<Void, Void, Void>() {
-
-            @Override
-            protected Void doInBackground(Void... voids){
-                ContentValues newMessage = new ContentValues();
-                newMessage.put(Contract.COLUMN_CHANNEL, data.get(JSON_AUTHOR_KEY));
-                newMessage.put(Contract.COLUMN_ARTICLE, data.get(JSON_MESSAGE_KEY).trim());
-                newMessage.put(Contract.COLUMN_DATE, data.get(JSON_DATE_KEY));
-                newMessage.put(Contract.COLUMN_CHANNEL_KEY, data.get(JSON_KEY_AUTHOR_KEY));
-                getContentResolver().insert(Provider.Articles.CONTENT_URI, newMessage);
-                return null;
-            }
-        };
-        insertNewsTask.execute();
-    }
-
     private void sendNotification(Map<String, String> data) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
-        String author = data.get(JSON_AUTHOR_KEY);
-        String message = data.get(JSON_MESSAGE_KEY);
-
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.baseline_drafts_black_36)
-                .setContentTitle("New article from : " + author)
-                .setContentText(message)
+                .setContentTitle(getResources().getString(R.string.notification_title))
+                .setContentText(getResources().getString(R.string.notification_text))
                 .setAutoCancel(true)
-                .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0, notificationBuilder.build());
+    }
+
+    private void insertNews(final Map<String, String> data) {
+        AsyncTask<Void, Void, Void> insertNewsTask = new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(Void... voids){
+                ContentValues newArticle = new ContentValues();
+                newArticle.put(Contract.Entry.COLUMN_CHANNEL, data.get(JSON_AUTHOR_KEY));
+                newArticle.put(Contract.Entry.COLUMN_ARTICLE, data.get(JSON_MESSAGE_KEY).trim());
+                newArticle.put(Contract.Entry.COLUMN_DATE, data.get(JSON_DATE_KEY));
+                newArticle.put(Contract.Entry.COLUMN_CHANNEL_KEY, data.get(JSON_KEY_AUTHOR_KEY));
+                getContentResolver().insert(Contract.Entry.CONTENT_URI, newArticle);
+                return null;
+            }
+        };
+        insertNewsTask.execute();
     }
 
     private void updateWidget() {

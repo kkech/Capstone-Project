@@ -29,26 +29,16 @@ import com.kk.capstone.R;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
-
     private Cursor mData;
-    private static SimpleDateFormat sDateFormat = new SimpleDateFormat("dd MMM");
-
-    private static final long MINUTE_MILLIS = 1000 * 60;
-    private static final long HOUR_MILLIS = 60 * MINUTE_MILLIS;
-    private static final long DAY_MILLIS = 24 * HOUR_MILLIS;
-
-    private final int COL_NUM_AUTHOR = 0;
-    private final int COL_NUM_MESSAGE = 1;
-    private final int COL_NUM_DATE = 2;
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_list, parent, false);
-
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -57,29 +47,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         mData.moveToPosition(position);
 
-        String message = mData.getString(COL_NUM_MESSAGE);
-        String author = mData.getString(COL_NUM_AUTHOR);
+        System.out.println("[][[][] : " + System.currentTimeMillis());
+        long minutes = Math.round((System.currentTimeMillis() - mData.getLong(2)) / (1000 * 60));
+        String date = "\u2022 " + String.valueOf(minutes) + "m";
 
-        long dateMillis = mData.getLong(COL_NUM_DATE);
-        String date;
-        long now = System.currentTimeMillis();
-
-        if (now - dateMillis < (DAY_MILLIS)) {
-            if (now - dateMillis < (HOUR_MILLIS)) {
-                long minutes = Math.round((now - dateMillis) / MINUTE_MILLIS);
-                date = String.valueOf(minutes) + "m";
-            } else {
-                long minutes = Math.round((now - dateMillis) / HOUR_MILLIS);
-                date = String.valueOf(minutes) + "h";
-            }
-        } else {
-            Date dateDate = new Date(dateMillis);
-            date = sDateFormat.format(dateDate);
-        }
-        date = "\u2022 " + date;
-
-        holder.messageTextView.setText(message);
-        holder.authorTextView.setText(author);
+        holder.messageTextView.setText(mData.getString(1));
+        holder.authorTextView.setText(mData.getString(0));
         holder.dateTextView.setText(date);
         holder.authorImageView.setImageResource(R.drawable.ic_person);
     }
@@ -97,17 +70,28 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView authorTextView;
-        TextView messageTextView;
-        TextView dateTextView;
-        ImageView authorImageView;
+//        TextView authorTextView;
+//        TextView messageTextView;
+//        TextView dateTextView;
+//        ImageView authorImageView;
+
+        @BindView(R.id.author_text_view) TextView authorTextView;
+        @BindView(R.id.message_text_view) TextView messageTextView;
+        @BindView(R.id.date_text_view) TextView dateTextView;
+        @BindView(R.id.author_image_view) ImageView authorImageView;
+
+
+
 
         public ViewHolder(View layoutView) {
             super(layoutView);
-            authorTextView = (TextView) layoutView.findViewById(R.id.author_text_view);
-            messageTextView = (TextView) layoutView.findViewById(R.id.message_text_view);
-            dateTextView = (TextView) layoutView.findViewById(R.id.date_text_view);
-            authorImageView = (ImageView) layoutView.findViewById(R.id.author_image_view);
+            ButterKnife.bind(this, layoutView);
+
+
+//            authorTextView = (TextView) layoutView.findViewById(R.id.author_text_view);
+//            messageTextView = (TextView) layoutView.findViewById(R.id.message_text_view);
+//            dateTextView = (TextView) layoutView.findViewById(R.id.date_text_view);
+//            authorImageView = (ImageView) layoutView.findViewById(R.id.author_image_view);
         }
     }
 }

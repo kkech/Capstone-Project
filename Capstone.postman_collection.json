@@ -12,7 +12,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "key=<YOUR KEY>"
+						"value": "key=AIzaSyCvMRfnLXyTj2oloOw7_EUeI4DFYl8CH1w"
 					},
 					{
 						"key": "Content-Type",
@@ -21,7 +21,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"to\":\"/topics/key_channel3\",\n\"data\":{\"channel\":\"Channel3 Original\",\"article\":\"Mitsubishi Magna for Sale\",\"date\":1535450057545,\"channelKey\":\"key_channel3\"}\n}"
+					"raw": "{\n\"to\":\"/topics/key_channel1\",\n\"data\":{\"channel\":\"Channel1 Original\",\"article\":\"Mitsubishi Magna for Sale\",\"date\":1535579021758,\"channelKey\":\"key_channel1\"}\n}"
 				},
 				"url": {
 					"raw": "https://fcm.googleapis.com/fcm/send",

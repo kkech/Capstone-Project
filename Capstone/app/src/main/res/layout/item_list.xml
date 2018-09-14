@@ -22,9 +22,10 @@
 
     <ImageView
         android:id="@+id/author_image_view"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:scaleType="fitCenter"
+        android:contentDescription="@string/iv_author_content_description"
         android:src="@drawable/ic_person" />
 
     <TextView
@@ -37,7 +38,8 @@
         android:paddingLeft="8dp"
         android:paddingStart="8dp"
         android:textColor="@color/colorText"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:layout_toEndOf="@id/author_image_view" />
 
     <TextView
         android:id="@+id/date_text_view"
@@ -45,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/author_text_view"
         android:textColor="@color/colorSecondaryText"
-        android:textStyle="italic" />
+        android:layout_toEndOf="@id/author_text_view" />
 
 
     <TextView
@@ -58,6 +60,7 @@
         android:paddingLeft="8dp"
         android:paddingStart="8dp"
         android:textColor="@color/colorText"
-        android:textSize="14sp" />
+        android:textSize="16sp"
+        android:layout_alignStart="@id/author_text_view" />
 
 </RelativeLayout>

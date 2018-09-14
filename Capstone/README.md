@@ -2,11 +2,7 @@ I rebuild the whole project, I made an POSTMAN project so instructors can test m
 
 Capstone Project Instructions
 
-Add the google-services.json in the app in order to run the app.
-
 Next, you can test the app by sending POST Request.
-
-I upload my POSTMAN project if you want to send requests. Change the <YOUR KEY> with your server key.
 
 Available topics ,channel keys:
 
@@ -15,3 +11,10 @@ Available topics ,channel keys:
 /topics/key_channel3 ,key_channel3
 /topics/key_channel4 ,key_channel4
 /topics/key_channel5 ,key_channel5
+
+My projects use my API key so it is ready to run it.
+
+I included a full video with instructions on youtube.
+
+You can find the video here:
+https://youtu.be/qdiFof46TMQ

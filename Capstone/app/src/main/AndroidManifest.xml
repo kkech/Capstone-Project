@@ -19,8 +19,8 @@
         </activity>
 
         <provider
-            android:name=".model.generated.Provider"
-            android:authorities="com.kk.capstone.model.provider"
+            android:name="com.kk.capstone.model.Provider"
+            android:authorities="com.kk.capstone.model"
             android:exported="false" />
 
         <activity

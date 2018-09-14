@@ -25,16 +25,9 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.kk.capstone.R;
 
-public class PreferenceFragment extends PreferenceFragmentCompat implements
-        SharedPreferences.OnSharedPreferenceChangeListener {
+public class PreferenceFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private final static String TAG = PreferenceFragment.class.getSimpleName();
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-    }
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -42,9 +35,9 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -55,14 +48,15 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements
             boolean isOn = sharedPreferences.getBoolean(key, false);
             if (isOn) {
                 FirebaseMessaging.getInstance().subscribeToTopic(key);
-                Log.d(TAG, "Subscribing to channel" + key);
             } else {
                 FirebaseMessaging.getInstance().unsubscribeFromTopic(key);
-                Log.d(TAG, "Un-subscribing from channel" + key);
             }
         }
     }
 
-
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+    }
 }

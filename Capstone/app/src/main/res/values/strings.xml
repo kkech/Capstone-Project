@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">News App</string>
 
+    <string name="appwidget_text">new articles</string>
+    <string name="add_widget">Add widget</string>
+
     <string name="settings_following_title">Following</string>
 
     <string name="not_following_text">Not Following</string>
@@ -18,7 +21,9 @@
     <string name="follow_title_channel4_switch">Channel4</string>
     <string name="follow_title_channel5_switch">Channel5</string>
 
+    <string name="notification_title">New article</string>
+    <string name="notification_text">You have a new article</string>
 
-    <string name="appwidget_text">new articles</string>
-    <string name="add_widget">Add widget</string>
+    <string name="iv_author_content_description">Article Provider Photo</string>
+
 </resources>
